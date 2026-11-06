@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olaleru Gbolahan — Builder &amp; Superpower Vendor</title>
+<meta name="description" content="Portfolio of Olaleru Gbolahan: about me, tech superpowers, projects, and a working Superpower Vending Machine.">
+<meta name="theme-color" content="#0b1020">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ base ============ */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#0b1020; --bg-2:#101736; --panel:#141c3d; --line:#27325e;
+  --text:#eaf0ff; --muted:#a3aecf;
+  --neon:#5ef2ff; --hot:#ff5c7a; --gold:#ffd166;
+  --max:1080px;
+}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0; background:
+    radial-gradient(80% 60% at 50% -10%, #1b2650 0%, transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font-family:"Space Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--neon)}
+h1,h2,h3{line-height:1.15;margin:0}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:20px}
+section{scroll-margin-top:88px}
+.skip{position:absolute;left:-999px;top:0;background:var(--neon);color:#06101f;padding:10px 16px;z-index:99;border-radius:0 0 8px 0;font-weight:700}
+.skip:focus{left:0}
+
+/* ============ header ============ */
+.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+  background:rgba(11,16,32,.82);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:16px;min-height:64px;flex-wrap:wrap;padding-block:10px}
+.brand{font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--text);font-size:1.05rem}
+.brand span{color:var(--neon)}
+.nav-links{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;padding:7px 11px;border-radius:8px;transition:.18s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--text);background:rgba(94,242,255,.09)}
+.nav-links a.cta{color:#06101f;background:var(--neon);font-weight:700}
+.nav-links a.cta:hover{background:#8ff8ff}
+.nav-links a[aria-current="true"]{color:var(--neon)}
+
+/* ============ hero ============ */
+.hero{padding:clamp(56px,10vw,110px) 0 clamp(36px,6vw,64px)}
+.eyebrow{margin:0 0 14px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--neon)}
+.hero h1{font-size:clamp(2.3rem,7vw,4.2rem);letter-spacing:-.03em}
+.hero h1 em{font-style:normal;background:linear-gradient(92deg,var(--neon),var(--hot) 60%,var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(1rem,2.4vw,1.2rem);color:var(--muted);max-width:56ch;margin:18px 0 0}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:.95rem;
+  padding:13px 22px;border-radius:11px;border:1px solid transparent;transition:.18s}
+.btn-primary{background:var(--neon);color:#06101f}
+.btn-primary:hover{background:#8ff8ff;transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--neon);color:var(--neon)}
+.hint-pill{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:.55rem 1rem;
+  font-size:.86rem;color:var(--neon);border:1px dashed rgba(94,242,255,.5);
+  border-radius:999px;background:rgba(94,242,255,.07);text-decoration:none}
+.hint-pill:hover{background:rgba(94,242,255,.14)}
+.hint-pill .dot{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+
+/* ============ generic section ============ */
+.sec{padding:clamp(48px,8vw,88px) 0;border-top:1px solid rgba(39,50,94,.55)}
+.sec-head{max-width:62ch;margin-bottom:36px}
+.sec-head h2{font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.02em}
+.sec-head p{color:var(--muted);margin:.6em 0 0}
+.prose p{color:#cfd8f5;max-width:66ch;margin:0 0 1.1em}
+.prose strong{color:var(--text)}
+
+/* ============ skills ============ */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+  border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;transition:.2s}
+.card:hover{border-color:rgba(94,242,255,.45);transform:translateY(-2px)}
+.card .k{font-size:1.35rem;line-height:1}
+.card h3{font-size:1rem;margin:.55em 0 .3em}
+.card p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.55}
+
+/* ============ projects ============ */
+.proj{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.proj .card{padding:22px}
+.proj h3{font-size:1.08rem}
+.proj .stack{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px}
+.proj .tag{font-size:.72rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--neon);background:rgba(94,242,255,.06)}
+.proj .learned{font-size:.85rem;color:var(--muted);border-left:2px solid var(--line);padding-left:11px;margin:0 0 14px}
+.proj .links{display:flex;flex-wrap:wrap;gap:6px 18px}
+.proj .bots{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.proj .bots a{font-size:.8rem;font-weight:500;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.proj .bots a:hover{border-color:var(--neon);text-decoration:none}
+.proj a{font-size:.88rem;font-weight:700;text-decoration:none}
+.proj a:hover{text-decoration:underline}
+
+/* ============ vending machine ============ */
+.svm{--e1:#232a52;--e2:#141936;--edge:#3b4785;
+  padding:clamp(30px,6vw,60px) 16px;border-radius:24px;
+  background:
+    radial-gradient(120% 100% at 50% 0%,rgba(94,242,255,.10),transparent 60%),
+    radial-gradient(100% 100% at 50% 100%,rgba(255,92,122,.08),transparent 60%);
+  border:1px solid rgba(39,50,94,.7);
+}
+.svm-head{max-width:620px;margin:0 auto clamp(22px,4vw,34px);text-align:center}
+.svm-eyebrow{margin:0;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--neon)}
+.svm-head h2{margin:.35em 0 .65em;font-size:clamp(1.5rem,4vw,2.1rem)}
+.svm-hint{display:inline-flex;align-items:center;gap:.5rem;margin:0;padding:.55rem .95rem;
+  font-size:.88rem;color:var(--neon);border:1px dashed rgba(94,242,255,.5);
+  border-radius:999px;background:rgba(94,242,255,.07)}
+.svm-hint span{animation:bobx 1.5s ease-in-out infinite}
+@keyframes bobx{50%{transform:translateX(5px)}}
+
+.svm-machine{position:relative;max-width:420px;margin:0 auto;padding:16px;border-radius:26px;
+  background:linear-gradient(160deg,var(--e1),var(--e2) 60%);border:1px solid var(--edge);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.14),inset 0 -12px 30px rgba(0,0,0,.5)}
+
+.svm-window{position:relative;height:190px;border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,#070a1a,#0d1230);
+  border:1px solid rgba(94,242,255,.25);box-shadow:inset 0 0 40px rgba(94,242,255,.18)}
+.svm-window::before{content:"";position:absolute;inset:8px;
+  background-image:
+    radial-gradient(circle at 50% 50%,var(--hot) 44%,transparent 48%),
+    radial-gradient(circle at 50% 50%,var(--neon) 44%,transparent 48%),
+    radial-gradient(circle at 50% 50%,var(--gold) 44%,transparent 48%);
+  background-size:38px 38px,38px 38px,38px 38px;
+  background-position:0 0,13px 19px,26px 7px;opacity:.75}
+.svm-window::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.16) 0 18%,transparent 34% 100%)}
+
+.svm-panel{display:flex;justify-content:center;margin-top:14px}
+.svm-lever{position:relative;width:92px;height:52px;padding:0;border-radius:12px;cursor:pointer;
+  background:linear-gradient(180deg,#2b3364,#151a38);border:1px solid var(--edge);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 6px 0 rgba(0,0,0,.45)}
+.svm-lever .knob{position:absolute;left:8px;top:8px;width:36px;height:36px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ff9db0,var(--hot) 55%,#b3233c);
+  box-shadow:0 0 0 4px rgba(255,92,122,.18),0 0 22px rgba(255,92,122,.75);
+  transition:transform .22s cubic-bezier(.3,1.5,.5,1)}
+.svm-lever .label{position:absolute;right:11px;top:50%;transform:translateY(-50%);
+  font-size:.66rem;letter-spacing:.14em;color:var(--muted)}
+.svm-lever:hover .knob{box-shadow:0 0 0 6px rgba(255,92,122,.22),0 0 30px rgba(255,92,122,.95)}
+.svm-lever:active .knob,.svm.is-vending .knob{transform:translateX(28px)}
+.svm-lever:focus-visible{outline:3px solid var(--neon);outline-offset:3px}
+.svm:not(.has-prize) .svm-lever .knob{animation:pulse 1.9s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(255,92,122,.10),0 0 34px rgba(255,92,122,1)}}
+
+.svm-tray{margin-top:14px;min-height:118px;display:grid;place-items:center;text-align:center;
+  padding:14px;border-radius:14px;background:linear-gradient(180deg,#05070f,#0a0e22);
+  border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 8px 18px rgba(0,0,0,.7)}
+.svm-empty{margin:0;font-size:.85rem;color:var(--muted)}
+.svm-card{max-width:300px}
+.svm-card[hidden]{display:none}
+.svm-card.is-in{animation:drop .55s cubic-bezier(.2,.9,.3,1.4) both}
+@keyframes drop{from{transform:translateY(-30px) scale(.9);opacity:0}to{transform:none;opacity:1}}
+.svm-card .icon{font-size:1.7rem;line-height:1}
+.svm-card h3{margin:.25em 0 .35em;font-size:1.02rem;color:var(--gold)}
+.svm-card p{margin:0;font-size:.88rem;line-height:1.5;color:#dbe3ff}
+.svm-card .again{margin-top:.7em;font-size:.72rem;letter-spacing:.04em;color:var(--muted)}
+.svm.is-vending .svm-machine{animation:shake .55s ease-in-out}
+@keyframes shake{
+  10%,90%{transform:translateX(-1px)}20%,80%{transform:translateX(2px)}
+  30%,50%,70%{transform:translateX(-4px)}40%,60%{transform:translateX(4px)}}
+.svm-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ============ footer ============ */
+.site-footer{border-top:1px solid var(--line);padding:36px 0 48px;margin-top:24px}
+.foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+  font-size:.88rem;color:var(--muted)}
+.foot a{color:var(--text);text-decoration:none;margin-left:16px}
+.foot a:hover{color:var(--neon)}
+
+/* ============ motion guard ============ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top">Olaleru<span>.</span>Gbolahan</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#superpower" class="cta">🎁 Vend a superpower</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero wrap" id="top">
+    <p class="eyebrow">Portfolio · deployed on AWS Amplify</p>
+    <h1>I build small useful things<br>and I ship them <em>loud</em>.</h1>
+    <p class="lede">
+      CS student, front-end tinkerer, and the proud owner of a vending machine
+      that dispenses superpowers. Everything here is real, working, and built by me.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#projects">See my projects →</a>
+      <a class="btn btn-ghost" href="#superpower">Vend a superpower</a>
+    </div>
+    <a class="hint-pill" href="#superpower">
+      <span class="dot" aria-hidden="true">👇</span>
+      Psst — press the glowing lever below to vend my hidden superpower
+    </a>
+  </section>
+
+  <!-- ================= CREATIVE FEATURE ================= -->
+  <section class="wrap" id="superpower">
+    <div class="svm" id="svm">
+      <div class="svm-head">
+        <p class="svm-eyebrow">Interactive · built by me</p>
+        <h2>My Superpower Vending Machine</h2>
+        <p class="svm-hint"><span aria-hidden="true">👉</span> Press the glowing lever to vend my hidden superpower</p>
+      </div>
+
+      <div class="svm-machine">
+        <div class="svm-window" aria-hidden="true"></div>
+
+        <div class="svm-panel">
+          <button type="button" class="svm-lever" id="svm-lever"
+                  aria-label="Press the lever to vend my hidden superpower">
+            <span class="knob" aria-hidden="true"></span>
+            <span class="label" aria-hidden="true">VEND</span>
+          </button>
+        </div>
+
+        <div class="svm-tray">
+          <p class="svm-empty" id="svm-empty">Tray empty — something's in there for you.</p>
+          <div class="svm-card" id="svm-card" hidden>
+            <div class="icon" id="svm-icon" aria-hidden="true">✨</div>
+            <h3 id="svm-power">—</h3>
+            <p id="svm-desc">—</p>
+            <p class="again">Press the lever again for another</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="svm-sr" role="status" aria-live="polite" id="svm-live"></p>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="sec wrap" id="about">
+    <div class="sec-head">
+      <h2>About Me</h2>
+      <p>Three paragraphs. No buzzwords. Here's the short version.</p>
+    </div>
+    <div class="prose">
+      <p>
+        I got into tech through a love of <strong>software and hardware systems</strong>. As a kid
+        I played video games and cracked things open to see how they worked, and that curiosity
+        never left. It's why I'm happiest when I can take a system apart, understand it, and
+        make it work better.
+      </p>
+      <p>
+        My best work happens at the seam between <strong>design and logic</strong>: taking
+        something technically correct and making it feel obvious to a first-time visitor.
+        I've shipped a fragrance storefront, a research tool for crypto and opportunities,
+        and <strong>four Telegram bots</strong>. I care about accessibility too (keyboard focus,
+        reduced motion, readable contrast) because I've watched people bounce off sites that
+        technically "worked."
+      </p>
+      <p>
+        Right now I'm focused on <strong>front-end engineering, DevOps and cloud basics</strong>.
+        I'm practising infrastructure automation in public on GitHub, and this portfolio is my
+        first fully deployed site on AWS. The vending machine above is my attempt at making a
+        personal page feel like something rather than a list.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="sec wrap" id="skills">
+    <div class="sec-head">
+      <h2>Tech Superpowers</h2>
+      <p>Each one is something I've actually used to finish a thing.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="k" aria-hidden="true">🧱</div>
+        <h3>HTML / CSS / JS</h3>
+        <p>Built RholaScents, a full storefront with a bag, checkout flow and WhatsApp ordering, plus this portfolio from a blank file.</p>
+      </article>
+      <article class="card">
+        <div class="k" aria-hidden="true">🤖</div>
+        <h3>Telegram Bots</h3>
+        <p>Built and run four live bots, from a crypto signal bot to a game bot and a location bot.</p>
+      </article>
+      <article class="card">
+        <div class="k" aria-hidden="true">🛠️</div>
+        <h3>DevOps &amp; Bash</h3>
+        <p>Practising infrastructure automation in public: bash automation first, with config management, Docker and IaC next.</p>
+      </article>
+      <article class="card">
+        <div class="k" aria-hidden="true">☁️</div>
+        <h3>AWS Amplify</h3>
+        <p>Connected a GitHub repo to Amplify Hosting, so every push to main rebuilds and republishes.</p>
+      </article>
+      <article class="card">
+        <div class="k" aria-hidden="true">🎨</div>
+        <h3>UI &amp; Motion</h3>
+        <p>Designed the vending machine: lever physics, drop animation, and a neon palette that holds up on mobile.</p>
+      </article>
+      <article class="card">
+        <div class="k" aria-hidden="true">♿</div>
+        <h3>Accessibility &amp; Git</h3>
+        <p>Keyboard-operable, screen-reader announced, and usable with <code>prefers-reduced-motion</code> on. Version-controlled on GitHub.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="sec wrap" id="projects">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <p>Real things I've built and shipped. Open any of them.</p>
+    </div>
+    <div class="proj">
+      <article class="card">
+        <h3>RholaScents</h3>
+        <p>An online fragrance store with a product catalogue, shopping bag and checkout, plus same-day ordering through WhatsApp.</p>
+        <div class="stack"><span class="tag">Storefront</span><span class="tag">WhatsApp ordering</span><span class="tag">GitHub Pages</span></div>
+        <p class="learned">Built for: a Nigerian perfume business that sells authentic luxury fragrances.</p>
+        <div class="links"><a href="https://gbolahan0x.github.io/rholascents/" target="_blank" rel="noopener">Live site →</a></div>
+      </article>
+      <article class="card">
+        <h3>SignalFound</h3>
+        <p>A research workspace with a live view of the top 20 cryptocurrencies and a scanner that compares up to ten webpages for pay, deadlines, eligibility and scam-risk signals.</p>
+        <div class="stack"><span class="tag">Research tool</span><span class="tag">Crypto market</span><span class="tag">Scam-risk signals</span></div>
+        <p class="learned">Built for: checking before you act, with a clear note that nothing here is financial advice.</p>
+        <div class="links"><a href="https://signalfound-opportunities.whoscoredbot.chatgpt.site/" target="_blank" rel="noopener">Live site →</a></div>
+      </article>
+      <article class="card">
+        <h3>Four Telegram Bots</h3>
+        <p>Four live bots that I built and run: signals, an AI assistant, a game and a location lookup. Open any of them in Telegram.</p>
+        <div class="stack"><span class="tag">Telegram</span><span class="tag">Bots</span><span class="tag">Automation</span></div>
+        <div class="bots"><a href="https://t.me/cryppt_signalbot" target="_blank" rel="noopener">@cryppt_signalbot</a><a href="https://t.me/klaudclaw_bot" target="_blank" rel="noopener">@klaudclaw_bot</a><a href="https://t.me/okmgamebot" target="_blank" rel="noopener">@okmgamebot</a><a href="https://t.me/locate_all_bot" target="_blank" rel="noopener">@locate_all_bot</a></div>
+      </article>
+      <article class="card">
+        <h3>DevOps Practice</h3>
+        <p>A month-long public challenge: four practical infrastructure automation projects, from bash scripts to Docker and infrastructure as code.</p>
+        <div class="stack"><span class="tag">Bash</span><span class="tag">Docker</span><span class="tag">IaC</span><span class="tag">Git</span></div>
+        <p class="learned">Progress is tracked in the repo, week by week.</p>
+        <div class="links"><a href="https://github.com/gbolahan0x/devops-practice" target="_blank" rel="noopener">View code →</a></div>
+      </article>
+      <article class="card">
+        <h3>Superpower Vending Machine</h3>
+        <p>An interactive portfolio feature that dispenses hidden personal superpowers. Built to be discoverable without blocking navigation.</p>
+        <div class="stack"><span class="tag">JavaScript</span><span class="tag">CSS animation</span><span class="tag">ARIA</span></div>
+        <p class="learned">Learned: how to announce dynamic content to screen readers without moving focus.</p>
+        <div class="links"><a href="#superpower">Try it →</a></div>
+      </article>
+      <article class="card">
+        <h3>This Portfolio</h3>
+        <p>A single-file, dependency-light site deployed on AWS Amplify with continuous deployment from GitHub.</p>
+        <div class="stack"><span class="tag">AWS Amplify</span><span class="tag">Git</span><span class="tag">Responsive</span></div>
+        <p class="learned">Learned: static hosting is only "easy" until the build settings don't match your file layout.</p>
+        <div class="links"><a href="https://github.com/gbolahan0x/Portfolioaws" target="_blank" rel="noopener">View code →</a></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <span>Built by hand and deployed on AWS Amplify · 2026</span>
+    <span>
+      <a href="https://github.com/gbolahan0x" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  /* ---------- Superpower Vending Machine ---------- */
+  const root = document.getElementById('svm');
+  if (!root) return;
+
+  const lever = root.querySelector('#svm-lever');
+  const empty = root.querySelector('#svm-empty');
+  const card  = root.querySelector('#svm-card');
+  const icon  = root.querySelector('#svm-icon');
+  const title = root.querySelector('#svm-power');
+  const desc  = root.querySelector('#svm-desc');
+  const live  = root.querySelector('#svm-live');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ✏️ REPLACE ALL FIVE. Formula: specific ability + concrete detail, number, or story.
+     One number or proper noun per power. No résumé adjectives. */
+  const POWERS = [
+    { icon:'🧩', title:'Pattern Decoder',
+      text:'Give me a messy spreadsheet and I will find the one column everyone else ignored. I built a script that cut a club’s sign-up sorting from 2 hours to 4 minutes.' },
+    { icon:'🎤', title:'Room Wrangler',
+      text:'I can explain a technical idea to a non-technical room without a single "um". Ran a 40-person workshop on Git with zero slides — just a whiteboard.' },
+    { icon:'🕹️', title:'Arcade Archaeologist',
+      text:'I restore 90s arcade ROMs for fun. My first repair was a dead Galaga cabinet in my uncle’s shop.' },
+    { icon:'🌙', title:'Solve/Repair Anything',
+      text:'I would rather open it up than replace it, whether it is a dead ROM or a broken script. I currently run 4 Telegram bots and fix them myself when they break.' },
+    { icon:'🫱', title:'First-Responder Debugger',
+      text:'When a teammate is stuck, I ask three questions and usually find it. I keep a running file of every bug I’ve ever fixed.' }
+  ];
+
+  let bag = [], busy = false;
+
+  function nextPower(){
+    if (!bag.length) bag = POWERS.map((_, i) => i).sort(() => Math.random() - .5);
+    return POWERS[bag.pop()];
+  }
+
+  function vend(){
+    if (busy) return;
+    busy = true;
+
+    root.classList.remove('is-vending');
+    void root.offsetWidth;              // restart shake animation
+    root.classList.add('is-vending');
+
+    setTimeout(() => {
+      const p = nextPower();
+      icon.textContent  = p.icon;
+      title.textContent = p.title;
+      desc.textContent  = p.text;
+
+      empty.hidden = true;
+      card.hidden  = false;
+      card.classList.remove('is-in');
+      void card.offsetWidth;
+      card.classList.add('is-in');
+
+      root.classList.add('has-prize');
+      live.textContent = 'You vended: ' + p.title + '. ' + p.text;
+      busy = false;
+    }, reduce ? 0 : 850);
+  }
+
+  lever.addEventListener('click', vend);
+
+  /* ---------- scroll spy (nav highlight) ---------- */
+  const links = [...document.querySelectorAll('.nav-links a')].filter(a => a.hash.length > 1);
+  const sections = links.map(a => document.querySelector(a.hash)).filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        links.forEach(a => a.removeAttribute('aria-current'));
+        const active = links.find(a => a.hash === '#' + e.target.id);
+        if (active) active.setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(s => io.observe(s));
+  }
+})();
+</script>
+</body>
+</html>
